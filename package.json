@@ -1,0 +1,24 @@
+{
+  "name": "inspireshop",
+  "version": "1.0.0",
+  "description": "Alx SE final project",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Elijah-6/inspireshop.git"
+  },
+  "keywords": [
+    "ecommerce",
+    "mern",
+    "shop"
+  ],
+  "author": "Elijah Frempong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Elijah-6/inspireshop/issues"
+  },
+  "homepage": "https://github.com/Elijah-6/inspireshop#readme"
+}
