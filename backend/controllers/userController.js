@@ -7,9 +7,9 @@ import generateToken from '../utils/generateToken.js';
 // POST /api/users
 // Public
 const registerUser = asyncHandler(async (req, res) => {
-    const { name, email, password, isAdmin } = req.body;
+    const { username, email, password, isAdmin } = req.body;
 
-    if (!name || !email || !password) {
+    if (!username || !email || !password) {
         res.status(400);
         throw new Error('Please fill in all fields');
     }
@@ -24,7 +24,7 @@ const registerUser = asyncHandler(async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     try {
-        const user = await User.create({ name, email, password: hashedPassword });
+        const user = await User.create({ username, email, password: hashedPassword });
         generateToken(res, user._id);
         res.status(201).json({ user });
     } catch (error) {
@@ -58,5 +58,47 @@ const loginUser = asyncHandler(async (req, res) => {
     res.json({ user });
 });
 
+const logoutUser = asyncHandler(async (req, res) => {
+    res.clearCookie('jwt');
+    res.json({ message: 'User logged out' });
+});
 
-export { registerUser, loginUser };
+const getAllUsers = asyncHandler(async (req, res) => {
+    try {
+        const users = await User.find({});
+        res.json(users);
+    } catch (error) {
+        res.status(500).json({ message: "Cannot get users" });
+}
+});
+
+const userProfile = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.user._id);
+    if (!user) {
+        res.status(404);
+        throw new Error("User not found");
+    }
+    res.json(user);
+});
+
+const updateUserProfile = asyncHandler(async (req, res) => {
+    const user = await User.findByIdAndUpdate(req.user._id, { username, email }, { new: true });
+    if (!user) {
+        res.status(404);
+        throw new Error("User not found");
+    }
+    
+    res.json(user);
+});
+
+const deleteUser = asyncHandler(async (req, res) => {
+    const user = await User.findByIdAndDelete(req.user._id);
+    if (!user) {
+        res.status(404);
+        throw new Error("User not found");
+    }
+    
+    res.json({ message: "User deleted" });
+});
+
+export { registerUser, loginUser, logoutUser, getAllUsers, userProfile, updateUserProfile, deleteUser };
