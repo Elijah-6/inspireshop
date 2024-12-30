@@ -1,5 +1,5 @@
 import express from "express";
-import { registerUser, loginUser, logoutUser, updateUserProfile, deleteUser, getAllUsers,adminDeleteUser, adminUpdateUser } from "../controllers/userController.js";
+import { registerUser, loginUser, logoutUser, updateUserProfile, deleteUser, getAllUsers,adminDeleteUser, adminUpdateUser, userProfile, getUserProfile } from "../controllers/userController.js";
 import { authorizeAdmin, authenticate } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
@@ -9,11 +9,10 @@ router.route("/").post(registerUser).get(authenticate, authorizeAdmin, getAllUse
 router.post('/auth/login', loginUser);
 router.post('/auth/logout', logoutUser);
 
-// Protected routes
-router.put("/", authenticate, updateUserProfile);
+router.route('/profile').get(authenticate, userProfile).put(authenticate, updateUserProfile);
 
 // Admin routes
-router.delete("/:id", authenticate, authorizeAdmin, adminDeleteUser).put("/:id", authenticate, authorizeAdmin, adminUpdateUser);
+router.route("/:id").delete(authenticate, authorizeAdmin, adminDeleteUser).put(authenticate, authorizeAdmin, adminUpdateUser).get(authenticate, getUserProfile);
 
 // Helper routes
 

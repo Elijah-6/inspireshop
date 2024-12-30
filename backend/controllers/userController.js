@@ -109,6 +109,15 @@ const deleteUser = asyncHandler(async (req, res) => {
     res.json({ message: "User deleted" });
 });
 
+const getUserProfile = asyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id);
+    if (!user) {
+        res.status(404);
+        throw new Error("User not found");
+    }
+    res.json(user);
+});
+
 const adminUpdateUser = asyncHandler(async (req, res) => {
     const { username, email, isAdmin } = req.body;
     const user = await User.findByIdAndUpdate(req.params.id, { username, email, isAdmin }, { new: true });
@@ -130,4 +139,4 @@ const adminDeleteUser = asyncHandler(async (req, res) => {
     res.json({ message: "User deleted" });
 });
 
-export { registerUser, loginUser, logoutUser, getAllUsers, userProfile, updateUserProfile, deleteUser, adminDeleteUser, adminUpdateUser };
+export { registerUser, loginUser, logoutUser, getAllUsers, getUserProfile, userProfile, updateUserProfile, deleteUser, adminDeleteUser, adminUpdateUser };
