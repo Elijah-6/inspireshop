@@ -82,7 +82,15 @@ const userProfile = asyncHandler(async (req, res) => {
 });
 
 const updateUserProfile = asyncHandler(async (req, res) => {
-    const user = await User.findByIdAndUpdate(req.user._id, { username, email }, { new: true });
+    const { username, email } = req.body;
+    let password = req.body.password;
+    if (password) {
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+        password = hashedPassword;
+    }
+    const user = await User.findByIdAndUpdate(req.user._id, { username, email, password }, { new: true });
+
     if (!user) {
         res.status(404);
         throw new Error("User not found");
@@ -101,4 +109,25 @@ const deleteUser = asyncHandler(async (req, res) => {
     res.json({ message: "User deleted" });
 });
 
-export { registerUser, loginUser, logoutUser, getAllUsers, userProfile, updateUserProfile, deleteUser };
+const adminUpdateUser = asyncHandler(async (req, res) => {
+    const { username, email, isAdmin } = req.body;
+    const user = await User.findByIdAndUpdate(req.params.id, { username, email, isAdmin }, { new: true });
+    if (!user) {
+        res.status(404);
+        throw new Error("User not found");
+    }
+    
+    res.json(user.isAdmin);
+});
+
+const adminDeleteUser = asyncHandler(async (req, res) => {
+    const user = await User.findByIdAndDelete(req.params.id);
+    if (!user) {
+        res.status(404);
+        throw new Error("User not found");
+    }
+    
+    res.json({ message: "User deleted" });
+});
+
+export { registerUser, loginUser, logoutUser, getAllUsers, userProfile, updateUserProfile, deleteUser, adminDeleteUser, adminUpdateUser };

@@ -1,12 +1,14 @@
 import jwt from "jsonwebtoken";
-import User from "../models/userModel";
-import asyncHandler from "./asyncHandler";
+import User from "../models/userModel.js";
+import asyncHandler from "./asyncHandler.js";
 
 
 // Middleware to verify JWT
 
 const authenticate = asyncHandler (async(req, res, next) => {
-  let token = res.cookies.jwt;
+  let token;
+  
+  token = req.cookies.jwt;
 
   if (!token) {
     return res.status(401).json({ message: "You are not authorized to access this route" });
