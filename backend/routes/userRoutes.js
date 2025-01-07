@@ -6,8 +6,8 @@ const router = express.Router();
 
 // Public routes /api/v1/users
 router.route("/").post(registerUser).get(authenticate, authorizeAdmin, getAllUsers).delete(authenticate,deleteUser);
-router.post('/auth/login', loginUser);
-router.post('/auth/logout', logoutUser);
+router.post('/auth', loginUser);
+router.post('/logout', logoutUser);
 
 router.route('/profile').get(authenticate, userProfile).put(authenticate, updateUserProfile);
 
