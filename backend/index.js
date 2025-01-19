@@ -2,6 +2,7 @@ import path from 'path';
 import express from 'express';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
+import fs from 'fs';
 
 // utils
 import connectDB from "./config/db.js";
@@ -21,6 +22,12 @@ connectDB();
 const port = process.env.PORT || 5000;
 const app = express();
 
+const __dirname = path.resolve();
+const uploadsDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir);
+}
+
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -37,7 +44,7 @@ app.use("/api/orders", orderRoutes);
 //   res.send({ clientId: process.env.PAYPAL_CLIENT_ID });
 // });
 
-const __dirname = path.resolve();
+
 app.use("/uploads", express.static(path.join(__dirname + "/uploads")));
 
 // listen on port 5000
