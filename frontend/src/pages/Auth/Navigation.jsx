@@ -6,7 +6,7 @@ import {
   AiOutlineUserAdd,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
-import { FaHeart } from "react-icons/fa";
+import { FaHeart, FaUser } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./Navigation.css";
@@ -18,6 +18,7 @@ import FavoritesCount from "../Products/FavoritesCount";
 const Navigation = () => {
   const { userInfo } = useSelector((state) => state.auth);
   const { cartItems } = useSelector((state) => state.cart);
+  console.log(cartItems);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
@@ -55,7 +56,7 @@ const Navigation = () => {
           className="flex items-center transition-transform transform hover:translate-x-2"
         >
           <AiOutlineHome className="mr-2 mt-[3rem]" size={26} />
-          <span className="hidden nav-item-name mt-[3rem]">HOME</span>{" "}
+          <span className="hidden nav-item-name mt-[3rem]">Home</span>{" "}
         </Link>
 
         <Link
@@ -63,7 +64,7 @@ const Navigation = () => {
           className="flex items-center transition-transform transform hover:translate-x-2"
         >
           <AiOutlineShopping className="mr-2 mt-[3rem]" size={26} />
-          <span className="hidden nav-item-name mt-[3rem]">SHOP</span>{" "}
+          <span className="hidden nav-item-name mt-[3rem]">Shop</span>{" "}
         </Link>
 
         <Link to="/cart" className="flex relative">
@@ -100,7 +101,10 @@ const Navigation = () => {
           className="flex items-center text-gray-800 focus:outline-none"
         >
           {userInfo ? (
-            <span className="text-white">{userInfo.username}</span>
+            <>
+            <FaUser className="mt-[3rem] mr-2 text-white" size={20} />
+            <span className="text-white">{userInfo.user.username}</span>
+            </>
           ) : (
             <></>
           )}
@@ -127,10 +131,10 @@ const Navigation = () => {
         {dropdownOpen && userInfo && (
           <ul
             className={`absolute right-0 mt-2 mr-14 space-y-2 bg-white text-gray-600 ${
-              !userInfo.isAdmin ? "-top-20" : "-top-80"
+              !userInfo.user.isAdmin ? "-top-20" : "-top-80"
             } `}
           >
-            {userInfo.isAdmin && (
+            {userInfo.user.isAdmin && (
               <>
                 <li>
                   <Link
