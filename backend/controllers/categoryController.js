@@ -46,19 +46,10 @@ const updateCategory = asyncHandler(async (req, res) => {
 
 const removeCategory = asyncHandler(async (req, res) => {
   try {
-    const categoryId = req.params.categoryId;
-    if (!categoryId) {
-      return res.status(400).json({ error: "Category ID is required" });
-    }
-
-    const removed = await Category.findByIdAndDelete(categoryId);
-    if (!removed) {
-      return res.status(404).json({ error: "Category not found" });
-    }
-
-    res.json({ message: "Category removed successfully", category: removed });
+    const removed = await Category.findByIdAndDelete(req.params.categoryId);
+    res.json(removed);
   } catch (error) {
-    console.error("Error removing category:", error);
+    console.error(error);
     res.status(500).json({ error: "Internal server error" });
   }
 });

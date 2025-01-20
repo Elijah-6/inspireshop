@@ -21,7 +21,6 @@ const CategoryList = () => {
   const [createCategory] = useCreateCategoryMutation();
   const [updateCategory] = useUpdateCategoryMutation();
   const [deleteCategory] = useDeleteCategoryMutation();
-  console.log(categories)
 
   const handleCreateCategory = async (e) => {
     e.preventDefault();
