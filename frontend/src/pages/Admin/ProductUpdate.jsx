@@ -14,8 +14,7 @@ const AdminProductUpdate = () => {
   const params = useParams();
 
   const { data: productData } = useGetProductByIdQuery(params._id);
-
-  console.log(productData);
+  console.log(productData)
 
   const [image, setImage] = useState(productData?.image || "");
   const [name, setName] = useState(productData?.name || "");
@@ -23,7 +22,7 @@ const AdminProductUpdate = () => {
     productData?.description || ""
   );
   const [price, setPrice] = useState(productData?.price || "");
-  const [category, setCategory] = useState(productData?.category || "");
+  const [category, setCategory] = useState(productData?.category || {});
   const [quantity, setQuantity] = useState(productData?.quantity || "");
   const [brand, setBrand] = useState(productData?.brand || "");
   const [stock, setStock] = useState(productData?.countInStock);
@@ -51,6 +50,7 @@ const AdminProductUpdate = () => {
       setQuantity(productData.quantity);
       setBrand(productData.brand);
       setImage(productData.image);
+      setStock(productData.countInStock)
     }
   }, [productData]);
 
@@ -65,7 +65,7 @@ const AdminProductUpdate = () => {
       });
       setImage(res.image);
     } catch (err) {
-      toast.success("Item added successfully", {
+      toast.error("Image upload failed. Try again.", {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 2000,
       });
@@ -87,6 +87,7 @@ const AdminProductUpdate = () => {
 
       // Update product using the RTK Query mutation
       const data = await updateProduct({ productId: params._id, formData });
+      console.log(data);
 
       if (data?.error) {
         toast.error(data.error, {
@@ -233,6 +234,7 @@ const AdminProductUpdate = () => {
                   <select
                     placeholder="Choose Category"
                     className="p-4 mb-3 w-[30rem] border rounded-lg bg-[#101011] text-white mr-[5rem]"
+                    value={category}
                     onChange={(e) => setCategory(e.target.value)}
                   >
                     {categories?.map((c) => (
@@ -253,7 +255,7 @@ const AdminProductUpdate = () => {
                 </button>
                 <button
                   onClick={handleDelete}
-                  className="py-4 px-10 mt-5 rounded-lg text-lg font-bold  bg-pink-600"
+                  className="py-4 px-10 mt-5 rounded-lg text-lg font-bold  bg-red-600"
                 >
                   Delete
                 </button>
