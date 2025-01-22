@@ -2,6 +2,9 @@ import { Link, useParams } from 'react-router-dom';
 import { useGetProductsQuery } from '../redux/api/productApiSlice';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import Header from "../components/Header";
+import Product from "./Products/Product";
+import NavBar from '../components/NavBar';
 
 const Home = () => {
   const { keyword } = useParams();
@@ -10,16 +13,7 @@ const Home = () => {
   return (
     <div className="bg-gray-900 min-h-screen flex flex-col">
       {/* Header */}
-      <header className="bg-gray-900 shadow-md text-white p-4 rounded-md">
-        <div className="container mx-auto flex justify-between items-center">
-          <h1 className="text-3xl font-bold">InspireShop</h1>
-          <nav>
-            <Link to="/shop" className="px-4">Shop</Link>
-            <Link to="/about" className="px-4">About</Link>
-            <Link to="/contact" className="px-4">Contact</Link>
-          </nav>
-        </div>
-      </header>
+      <NavBar/>
 
       {/* Hero Section */}
       {!keyword && (
@@ -57,6 +51,19 @@ const Home = () => {
           </div>
         )}
       </section>
+            <>
+      {!keyword ? <Header /> : null}
+      {isLoading ? (
+        <Loader />
+      ) : isError ? (
+        <Message variant="danger">
+          {isError?.data.message || isError.error}
+        </Message>
+      ) : (
+        <>
+        </>
+      )}
+    </>
 
       {/* Footer */}
       <footer className="bg-gray-800 text-white py-6">
