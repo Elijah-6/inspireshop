@@ -11,6 +11,7 @@ import Loader from "../../components/Loader";
 import Message from "../../components/Message";
 import { addToCart } from "../../redux/features/cart/cartSlice";
 import {
+  FaBackward,
   FaBox,
   FaClock,
   FaShoppingCart,
@@ -70,7 +71,7 @@ const Product = () => {
           className="text-white font-semibold hover:underline ml-[10rem]"
           to="/"
         >
-          Go Back
+          <FaBackward/>
         </Link>
       </div>
       {isLoading ? (

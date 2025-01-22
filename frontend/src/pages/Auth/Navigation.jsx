@@ -6,7 +6,7 @@ import {
   AiOutlineUserAdd,
   AiOutlineShoppingCart,
 } from "react-icons/ai";
-import { FaHeart, FaUser } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import "./Navigation.css";
@@ -36,7 +36,7 @@ const Navigation = () => {
     try {
       await logoutApiCall().unwrap();
       dispatch(logout());
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       console.error(error);
     }
@@ -44,10 +44,10 @@ const Navigation = () => {
 
   return (
     <div
-      style={{ zIndex: 9999 }}
+      style={{ zIndex:9999 }}
       className={`${
         showSidebar ? "hidden" : "flex"
-      } xl:flex lg:flex md:hidden sm:hidden flex-col justify-between p-4 text-white bg-[#000] w-[4%] hover:w-[15%] h-[100vh]  fixed `}
+      } xl:flex lg:flex md:hidden sm:hidden flex-col justify-between p-4 text-white bg-transparent w-[4%] hover:w-[15%] h-[100vh]  fixed hover:bg-gray-900`}
       id="navigation-container"
     >
       <div className="flex flex-col justify-center space-y-4">
@@ -74,7 +74,7 @@ const Navigation = () => {
           </div>
 
           <div className="absolute top-9">
-            {cartItems.length > 0 && (
+            { userInfo && cartItems.length > 0 && (
               <span>
                 <span className="px-1 py-0 text-sm text-white bg-pink-500 rounded-full">
                   {cartItems.reduce((a, c) => a + c.qty, 0)}
@@ -102,7 +102,6 @@ const Navigation = () => {
         >
           {userInfo ? (
             <>
-            <FaUser className="mt-[3rem] mr-2 text-white" size={20} />
             <span className="text-white">{userInfo.user.username}</span>
             </>
           ) : (
@@ -130,7 +129,7 @@ const Navigation = () => {
 
         {dropdownOpen && userInfo && (
           <ul
-            className={`absolute right-0 mt-2 mr-14 space-y-2 bg-white text-gray-600 ${
+            className={`absolute right-0 mt-2 mr-0 rounded-md space-y-2 bg-gray-700 text-gray-100 ${
               !userInfo.user.isAdmin ? "-top-20" : "-top-80"
             } `}
           >
@@ -139,7 +138,7 @@ const Navigation = () => {
                 <li>
                   <Link
                     to="/admin/dashboard"
-                    className="block px-4 py-2 hover:bg-gray-100"
+                    className="block px-4 py-2 hover:bg-gray-100 hover:text-gray-700"
                   >
                     Dashboard
                   </Link>
@@ -147,7 +146,7 @@ const Navigation = () => {
                 <li>
                   <Link
                     to="/admin/productlist"
-                    className="block px-4 py-2 hover:bg-gray-100"
+                    className="block px-4 py-2 hover:bg-gray-100 hover:text-gray-700"
                   >
                     Products
                   </Link>
@@ -155,7 +154,7 @@ const Navigation = () => {
                 <li>
                   <Link
                     to="/admin/categorylist"
-                    className="block px-4 py-2 hover:bg-gray-100"
+                    className="block px-4 py-2 hover:bg-gray-100  hover:text-gray-700"
                   >
                     Category
                   </Link>
@@ -163,7 +162,7 @@ const Navigation = () => {
                 <li>
                   <Link
                     to="/admin/orderlist"
-                    className="block px-4 py-2 hover:bg-gray-100"
+                    className="block px-4 py-2 hover:bg-gray-100  hover:text-gray-700"
                   >
                     Orders
                   </Link>
@@ -171,7 +170,7 @@ const Navigation = () => {
                 <li>
                   <Link
                     to="/admin/userlist"
-                    className="block px-4 py-2 hover:bg-gray-100"
+                    className="block px-4 py-2 hover:bg-gray-100  hover:text-gray-700"
                   >
                     Users
                   </Link>
@@ -180,14 +179,14 @@ const Navigation = () => {
             )}
 
             <li>
-              <Link to="/profile" className="block px-4 py-2 hover:bg-gray-100">
+              <Link to="/profile" className="block px-4 py-2 hover:bg-gray-100  hover:text-gray-700">
                 Profile
               </Link>
             </li>
             <li>
               <button
                 onClick={logoutHandler}
-                className="block w-full px-4 py-2 text-left hover:bg-gray-100"
+                className="block w-full px-4 py-2 text-left hover:bg-gray-100  hover:text-gray-700"
               >
                 Logout
               </button>

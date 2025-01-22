@@ -14,6 +14,7 @@ import {
   FaShoppingCart,
   FaStar,
   FaStore,
+  FaArrowLeft
 } from "react-icons/fa";
 import moment from "moment";
 import HeartIcon from "./HeartIcon";
@@ -65,12 +66,12 @@ const ProductDetails = () => {
 
   return (
     <>
-      <div>
+      <div className="flex text-center">
         <Link
           to="/"
-          className="text-white font-semibold hover:underline ml-[10rem]"
+          className="text-pink-500 font-semibold text-xl hover:underline ml-[10rem]"
         >
-          Go Back
+         <FaArrowLeft/>
         </Link>
       </div>
 
