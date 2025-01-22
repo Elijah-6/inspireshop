@@ -1,12 +1,7 @@
-import NavBar from "../components/NavBar";
-
 
 const About = () => {
   return (
     <div className="bg-gray-900 min-h-screen flex flex-col">
-      {/* Header */}
-     <NavBar/>
-
       {/* Hero Section */}
       <section className="bg-cover bg-center h-96" style={{ backgroundImage: "url('/images/about-hero.jpg')" }}>
         <div className="container mx-auto h-full flex items-center justify-center">

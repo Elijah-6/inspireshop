@@ -3,8 +3,6 @@ import { useGetProductsQuery } from '../redux/api/productApiSlice';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
 import Header from "../components/Header";
-import Product from "./Products/Product";
-import NavBar from '../components/NavBar';
 
 const Home = () => {
   const { keyword } = useParams();
@@ -12,9 +10,6 @@ const Home = () => {
 
   return (
     <div className="bg-gray-900 min-h-screen flex flex-col">
-      {/* Header */}
-      <NavBar/>
-
       {/* Hero Section */}
       {!keyword && (
         <section className="bg-cover bg-center h-96 px-10">

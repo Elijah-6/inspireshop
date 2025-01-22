@@ -1,16 +1,15 @@
-import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import Navigation from "./pages/Auth/Navigation";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { FaArrowRight } from "react-icons/fa";
 
 const App = () => {
 
   return (
     <>
+    {/* <NavBar/> */}
       <ToastContainer />
-      <div className="relative">
+      <div className="relative bg-gray-900">
         <div className="flex">
         <Navigation />
         </div>
