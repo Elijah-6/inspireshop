@@ -39,6 +39,7 @@ InspireShop is an e-commerce platform built using the MERN stack (MongoDB, Expre
 	```env
 	MONGO_URI=your_mongodb_connection_string
 	PAYPAL_CLIENT_ID=your_paypal_client_id
+	JWT_SECRET=your secret
 	```
 
 4. Run the application:
