@@ -84,6 +84,7 @@ const Order = () => {
 
   const deliverHandler = async () => {
     await deliverOrder(orderId);
+    toast.success("Order is delivered");
     refetch();
   };
 
@@ -211,7 +212,7 @@ const Order = () => {
         )}
 
         {loadingDeliver && <Loader />}
-        {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+        {userInfo && userInfo.user.isAdmin && order.isPaid && !order.isDelivered && (
           <div>
             <button
               type="button"

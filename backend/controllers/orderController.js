@@ -8,7 +8,7 @@ function calcPrices(orderItems) {
     0
   );
 
-  const shippingPrice = itemsPrice > 100 ? 0 : 10;
+  const shippingPrice = itemsPrice > 500 ? 0 : 10;
   const taxRate = 0.15;
   const taxPrice = (itemsPrice * taxRate).toFixed(2);
 
@@ -162,9 +162,8 @@ const markOrderAsPaid = async (req, res) => {
     const order = await Order.findById(req.params.id);
 
     if (order) {
-      const timePaid = Date.now();
       order.isPaid = true;
-      order.paidAt = new Date(timePaid).toLocaleString("en-US");
+      order.paidAt = Date.now();
       order.paymentResult = {
         id: req.body.id,
         status: req.body.status,
@@ -188,9 +187,8 @@ const markOrderAsDelivered = async (req, res) => {
     const order = await Order.findById(req.params.id);
 
     if (order) {
-      const deliveryTime = Date.now();
       order.isDelivered = true;
-      order.deliveredAt = new Date(deliveryTime).toLocaleString("en-US");
+      order.deliveredAt = Date.now();
 
       const updatedOrder = await order.save();
       res.json(updatedOrder);

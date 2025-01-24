@@ -7,14 +7,13 @@ const App = () => {
 
   return (
     <>
-    {/* <NavBar/> */}
       <ToastContainer />
       <div className="relative bg-gray-900">
         <div className="flex">
         <Navigation />
         </div>
       </div>
-      <main className="py-3">
+      <main className="py-3 h-[100vh]">
         <Outlet />
       </main>
     </>

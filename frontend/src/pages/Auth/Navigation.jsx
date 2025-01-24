@@ -46,10 +46,10 @@ const Navigation = () => {
       style={{ zIndex:9999 }}
       className={`${
         showSidebar ? "hidden" : "flex"
-      } xl:flex lg:flex md:hidden sm:hidden flex-col justify-between p-4 text-white bg-transparent w-[4%] hover:w-[15%] h-[100vh]  fixed hover:bg-gray-900`}
+      } xl:flex lg:flex md:hidden sm:hidden flex-col justify-between p-4 text-white bg-transparent w-[4%] hover:w-[15%] h-[100vh] my-auto fixed hover:bg-gray-900`}
       id="navigation-container"
     >
-      <div className="flex flex-col justify-center space-y-4">
+      <div className="flex flex-col space-y-4">
         <Link
           to="/"
           className="flex items-center transition-transform transform hover:translate-x-2"

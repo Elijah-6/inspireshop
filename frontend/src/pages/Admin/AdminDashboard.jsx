@@ -28,7 +28,7 @@ const AdminDashboard = () => {
       tooltip: {
         theme: "dark",
       },
-      colors: ["#00E396"],
+      colors: ["#00E0AA"],
       dataLabels: {
         enabled: true,
       },
@@ -37,10 +37,10 @@ const AdminDashboard = () => {
       },
       title: {
         text: "Sales Trend",
-        align: "left",
+        align: "center",
       },
       grid: {
-        borderColor: "#ccc",
+        borderColor: "#000",
       },
       markers: {
         size: 1,
@@ -53,7 +53,7 @@ const AdminDashboard = () => {
       },
       yaxis: {
         title: {
-          text: "Sales",
+          text: "Total Sales",
         },
         min: 0,
       },
@@ -64,6 +64,16 @@ const AdminDashboard = () => {
         offsetY: -25,
         offsetX: -5,
       },
+      theme: {
+        mode: 'dark', // You can set this to 'light' or 'dark'
+        palette: 'palette10', // You can choose from 'palette1' to 'palette10'
+        monochrome: {
+          enabled: false,
+          color: '#002303',
+          shadeTo: 'dark',
+          shadeIntensity: 0.65
+        }
+      }
     },
     series: [{ name: "Sales", data: [] }],
   });
@@ -98,7 +108,7 @@ const AdminDashboard = () => {
       <section className="xl:ml-[4rem] md:ml-[0rem]">
         <div className="w-[80%] flex justify-around flex-wrap">
           <div className="rounded-lg bg-black p-5 w-[20rem] mt-5">
-            <div className="font-bold rounded-full w-[3rem] bg-pink-500 text-center p-3">
+            <div className="font-bold rounded-full w-[3rem] bg-green-500 text-center p-3">
               $
             </div>
 
@@ -108,7 +118,7 @@ const AdminDashboard = () => {
             </h1>
           </div>
           <div className="rounded-lg bg-black p-5 w-[20rem] mt-5">
-            <div className="font-bold rounded-full w-[3rem] bg-pink-500 text-center p-3">
+            <div className="font-bold rounded-full w-[3rem] bg-green-500 text-center p-3">
             <FaUser/>
             </div>
 
@@ -118,7 +128,7 @@ const AdminDashboard = () => {
             </h1>
           </div>
           <div className="rounded-lg bg-black p-5 w-[20rem] mt-5">
-            <div className="font-bold rounded-full w-[3rem] bg-pink-500 text-center p-3">
+            <div className="font-bold rounded-full w-[3rem] bg-green-500 text-center p-3">
               <FaRegAddressBook/>
             </div>
 
