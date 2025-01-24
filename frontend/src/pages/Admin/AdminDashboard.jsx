@@ -18,6 +18,7 @@ const AdminDashboard = () => {
   const { data: customers, isLoading: loading } = useGetUsersQuery();
   const { data: orders, isLoading: loadingTwo } = useGetTotalOrdersQuery();
   const { data: salesDetail } = useGetTotalSalesByDateQuery();
+  console.log(salesDetail);
 
   const [state, setState] = useState({
     options: {

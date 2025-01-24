@@ -87,6 +87,8 @@ const Order = () => {
     refetch();
   };
 
+   const formattedPaidAt = new Date(order.paidAt).toLocaleString();
+
   return isLoading ? (
     <Loader />
   ) : error ? (
@@ -167,7 +169,7 @@ const Order = () => {
           </p>
 
           {order.isPaid ? (
-            <Messsage variant="success">Paid on {order.paidAt}</Messsage>
+            <Messsage variant="success">Paid on {formattedPaidAt}</Messsage>
           ) : (
             <Messsage variant="danger">Not paid</Messsage>
           )}
