@@ -162,8 +162,9 @@ const markOrderAsPaid = async (req, res) => {
     const order = await Order.findById(req.params.id);
 
     if (order) {
+      const timePaid = Date.now();
       order.isPaid = true;
-      order.paidAt = Date.now();
+      order.paidAt = new Date(timePaid).toLocaleString("en-US");
       order.paymentResult = {
         id: req.body.id,
         status: req.body.status,
@@ -187,8 +188,9 @@ const markOrderAsDelivered = async (req, res) => {
     const order = await Order.findById(req.params.id);
 
     if (order) {
+      const deliveryTime = Date.now();
       order.isDelivered = true;
-      order.deliveredAt = Date.now();
+      order.deliveredAt = new Date(deliveryTime).toLocaleString("en-US");
 
       const updatedOrder = await order.save();
       res.json(updatedOrder);
