@@ -1,23 +1,25 @@
 import Message from "../../components/Message";
 import Loader from "../../components/Loader";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { useGetMyOrdersQuery } from "../../redux/api/orderApiSlice";
 
 const UserOrder = () => {
+  const { userInfo } = useSelector((state) => state.auth);
   const { data: orders, isLoading, error } = useGetMyOrdersQuery();
 
   return (
-    <div className="container mx-auto">
-      <h2 className="text-2xl font-semibold mb-4">My Orders </h2>
+    <div className="container mx-auto p-4">
+      <h2 className="text-2xl font-semibold mb-4 text-center">{userInfo.user.username}&apos;s Orders </h2>
 
       {isLoading ? (
         <Loader />
       ) : error ? (
         <Message variant="danger">{error?.data?.error || error.error}</Message>
       ) : (
-        <table className="w-full">
+        <table className="w-[70%] mx-auto">
           <thead>
-            <tr>
+            <tr className="bg-gray-500 text-gray-900">
               <td className="py-2">IMAGE</td>
               <td className="py-2">ID</td>
               <td className="py-2">DATE</td>

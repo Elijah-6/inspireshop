@@ -16,7 +16,7 @@ const OrderList = () => {
           {error?.data?.message || error.error}
         </Message>
       ) : (
-        <table className="container mx-auto">
+        <table className="container mx-auto w-[80%] mt-10">
           <AdminMenu />
 
           <thead className="w-full border">
@@ -78,7 +78,7 @@ const OrderList = () => {
 
                 <td>
                   <Link to={`/order/${order._id}`}>
-                    <button>More</button>
+                    <button className="outline-none p-2 rounded-full text-gray-800 bg-blue-500">More &gt;&gt;</button>
                   </Link>
                 </td>
               </tr>

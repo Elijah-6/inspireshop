@@ -69,7 +69,7 @@ const ProductDetails = () => {
       <div className="flex text-center">
         <Link
           to="/"
-          className="text-pink-500 font-semibold text-xl hover:underline ml-[10rem]"
+          className="text-pink-500 font-semibold text-xl ml-[10rem]"
         >
          <FaArrowLeft/>
         </Link>
@@ -83,14 +83,13 @@ const ProductDetails = () => {
         </Message>
       ) : (
         <>
-          <div className="flex flex-wrap relative items-between mt-[2rem] ml-[10rem]">
+          <div className="flex flex-wrap relative items-center mt-[2rem] ml-[10rem]">
             <div>
               <img
                 src={product.image}
                 alt={product.name}
                 className="w-full xl:w-[50rem] lg:w-[45rem] md:w-[30rem] sm:w-[20rem] mr-[2rem]"
               />
-
               <HeartIcon product={product} />
             </div>
 

@@ -19,9 +19,9 @@ const Profile = () => {
     useProfileMutation();
 
   useEffect(() => {
-    setUserName(userInfo.username);
-    setEmail(userInfo.email);
-  }, [userInfo.email, userInfo.username]);
+    setUserName(userInfo.user.username);
+    setEmail(userInfo.user.email);
+  }, [userInfo.user.email, userInfo.user.username]);
 
   const dispatch = useDispatch();
 
@@ -104,7 +104,7 @@ const Profile = () => {
               </button>
 
               <Link
-                to="/user-orders"
+                to="/mine"
                 className="bg-pink-600 text-white py-2 px-4 rounded hover:bg-pink-700"
               >
                 My Orders
