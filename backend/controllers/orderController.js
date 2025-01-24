@@ -71,7 +71,7 @@ const createOrder = async (req, res) => {
       totalPrice,
     });
 
-    const createdOrder = await order.save();
+const createdOrder = await order.save();
     res.status(201).json(createdOrder);
   } catch (error) {
     res.status(500).json({ error: error.message });
@@ -115,7 +115,7 @@ const calculateTotalSales = async (req, res) => {
   }
 };
 
-const calcualteTotalSalesByDate = async (req, res) => {
+const calculateTotalSalesByDate = async (req, res) => {
   try {
     const salesByDate = await Order.aggregate([
       {
@@ -207,7 +207,7 @@ export {
   getUserOrders,
   countTotalOrders,
   calculateTotalSales,
-  calcualteTotalSalesByDate,
+  calculateTotalSalesByDate,
   findOrderById,
   markOrderAsPaid,
   markOrderAsDelivered,
