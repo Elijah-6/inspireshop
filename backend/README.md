@@ -22,7 +22,6 @@ This document provides an overview of the API routes available in the backend of
 - **Request Body:**
 	```json
 	{
-		"username": "string",
 		"email": "string",
 		"password": "string"
 	}
@@ -33,7 +32,9 @@ This document provides an overview of the API routes available in the backend of
 		"user": {
 			"_id": "string",
 			"username": "string",
-			"email": "string"
+			"email": "string",
+			"password":	"string",
+			"isAdmin": "Boolean"
 		}
 	}
 	```
@@ -56,7 +57,9 @@ This document provides an overview of the API routes available in the backend of
 		"user": {
 			"_id": "string",
 			"username": "string",
-			"email": "string"
+			"email": "string",
+   			"password": "string",
+   			"isAdmin": "Boolean"
 		}
 	}
 	```
