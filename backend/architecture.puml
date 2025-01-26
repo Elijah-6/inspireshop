@@ -1,0 +1,52 @@
+@startuml
+!define RECTANGLE class
+
+RECTANGLE "Backend" {
+  RECTANGLE "Node.js" as NodeJS
+  RECTANGLE "Express.js" as ExpressJS
+}
+
+RECTANGLE "Database" {
+  RECTANGLE "MongoDB" as MongoDB
+}
+
+RECTANGLE "Authentication" {
+  RECTANGLE "JWT" as JWT
+  RECTANGLE "bcrypt" as bcrypt
+}
+
+RECTANGLE "Payment Gateway" {
+  RECTANGLE "PayPal" as PayPal
+}
+
+RECTANGLE "Controllers" {
+  RECTANGLE "UserController" as UserController
+  RECTANGLE "ProductController" as ProductController
+  RECTANGLE "CategoryController" as CategoryController
+  RECTANGLE "OrderController" as OrderController
+}
+
+RECTANGLE "Routes" {
+  RECTANGLE "UserRoutes" as UserRoutes
+  RECTANGLE "ProductRoutes" as ProductRoutes
+  RECTANGLE "CategoryRoutes" as CategoryRoutes
+  RECTANGLE "OrderRoutes" as OrderRoutes
+}
+
+NodeJS --> ExpressJS : Uses
+ExpressJS --> MongoDB : Communicates with
+ExpressJS --> JWT : Uses for authentication
+ExpressJS --> bcrypt : Uses for password hashing
+ExpressJS --> PayPal : Integrates with
+
+ExpressJS --> UserController : Routes to
+ExpressJS --> ProductController : Routes to
+ExpressJS --> CategoryController : Routes to
+ExpressJS --> OrderController : Routes to
+
+UserController --> UserRoutes : Handles
+ProductController --> ProductRoutes : Handles
+CategoryController --> CategoryRoutes : Handles
+OrderController --> OrderRoutes : Handles
+
+@enduml

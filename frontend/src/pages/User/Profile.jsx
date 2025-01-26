@@ -32,7 +32,7 @@ const Profile = () => {
     } else {
       try {
         const res = await updateProfile({
-          _id: userInfo._id,
+          _id: userInfo.user._id,
           username,
           email,
           password,

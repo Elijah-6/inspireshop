@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/features/cart/cartSlice";
@@ -7,13 +7,25 @@ import HeartIcon from "./HeartIcon";
 
 const ProductCard = ({ p }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const addToCartHandler = (product, qty) => {
     dispatch(addToCart({ ...product, qty }));
-    toast.success("Item added successfully", {
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    if (!userInfo) {
+      toast.error("Please sign in to view items in cart", {
+      position: toast.POSITION.TOP_RIGHT,
+      autoClose: 2000,
+      });
+      navigate("/login");
+    }
+    else {
+      toast.success("Item added successfully", {
       position: toast.POSITION.TOP_RIGHT,
       autoClose: 2000,
     });
+    }
+  
   };
 
   return (
